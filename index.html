@@ -8,26 +8,61 @@
 </head>
 <body>
     <script>
-        // This is a rock-paper-scissors game. 
-        
-        // The user inputs a "rock", "paper" or "scissors"
-        let playerSelection = prompt('Enter "rock", "paper" or "scissors" to play!');
-        // Check for valid input
-        // Input can be case insensiteve
-        
-        // Program randomly picks "rock", "paper" or "scissors"
-        // Program compares two choices
-        // Program outputs the results of the round
-        // Game continues for 5 rounds total
-        // Program outputs the result of the game
+        // This is a Rock-Paper-Scissors game. 
 
+        // Initialize variables for keeping score
         
-
-        let computerSelection = computerPlay();
-
+        
+        
+        // .. Program randomly picks "Rock", "Paper" or "Scissors"
+        const gameVariants = ['Rock', 'Paper', 'Scissors']; 
+        
         function computerPlay() {
-
+            return gameVariants[~~(Math.random()*gameVariants.length)];
         }
+
+        let playerScore = 0;
+        let computerScore = 0;
+        let roundWinner = "";
+
+        // Program compares two choices (plays a round) and outputs the result of the round
+        function playRound(playerSelection, computerSelection) {
+            
+            computerSelection = computerPlay();
+            playerSelection = prompt('Enter "Rock", "Paper" or "Scissors" to play!');
+            
+            playerSelection = playerSelection.toLowerCase();
+            playerSelection = playerSelection.charAt(0).toUpperCase()+playerSelection.slice(1);
+        
+            if (playerSelection === computerSelection) {
+                console.log(`It's a tie! Your score: ${playerScore}, computer\`s score: ${computerScore}.`);
+            } else if (playerSelection === "Rock" && computerSelection === "Scissors" || playerSelection === "Paper" && computerSelection === "Rock" || playerSelection === "Scissors" && computerSelection === "Paper") {
+                ++playerScore;
+                console.log(`You win this round! Your ${playerSelection} beats ${computerSelection}. Your score: ${playerScore}, computer\`s score: ${computerScore}.`);
+            } else if (playerSelection === "Rock" && computerSelection === "Paper" || playerSelection === "Paper" && computerSelection === "Scissors" || playerSelection === "Scissors" && computerSelection === "Rock") {
+                ++computerScore;
+                console.log(`You lost this round! Computer beats your ${playerSelection} with a ${computerSelection}. Your score: ${playerScore}, computer\`s score: ${computerScore}.`)
+            } else {
+                console.log("Error");
+            }
+            return roundWinner;   
+        }
+
+        // Game consists of 5 game rounds  
+        function game() {
+            for (let i = 0; i < 5; i++) {
+                playRound();
+            }
+            if (playerScore < computerScore) {
+                alert("You lost the game!");
+            } else if (playerScore > computerScore) {
+                alert("You won the game!");
+            }
+        }
+
+        game();
+        
+        // Program compares number of rounds won by a user and the computer and outputs the result of the game        
     </script>
 </body>
 </html>
