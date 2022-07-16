@@ -8,22 +8,18 @@
 </head>
 <body>
     <script>
-        // This is a Rock-Paper-Scissors game. 
-
-        // Initialize variables for keeping score
-        
-        
-        
-        // .. Program randomly picks "Rock", "Paper" or "Scissors"
+        // This is a Rock-Paper-Scissors game. The code works as long as user's input is valid :)
+                
+        // Program randomly picks "Rock", "Paper" or "Scissors"
         const gameVariants = ['Rock', 'Paper', 'Scissors']; 
         
         function computerPlay() {
             return gameVariants[~~(Math.random()*gameVariants.length)];
         }
-
+        
+        // Initialize variables for keeping score
         let playerScore = 0;
         let computerScore = 0;
-        let roundWinner = "";
 
         // Program compares two choices (plays a round) and outputs the result of the round
         function playRound(playerSelection, computerSelection) {
@@ -45,7 +41,6 @@
             } else {
                 console.log("Error");
             }
-            return roundWinner;   
         }
 
         // Game consists of 5 game rounds  
